@@ -77,7 +77,7 @@
 <link href="/blog/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Javascript Notes, JS tutorials, Akshat" />
+  <meta name="keywords" content="meteor,block helpers," />
 
 
 
@@ -93,15 +93,17 @@
 
 
 
-<meta name="description" content="Technical notes for reference">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Akshat&#39;s Notes">
-<meta property="og:url" content="http://www.akshatjoshi.co.in/blog/index.html">
+<meta name="description" content="Block helpers are templates that wrap the content of the block. They can be used to show content in different ways depending on conditions, or they can be used to add extra functionality to the blocks">
+<meta name="keywords" content="meteor,block helpers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Block Helpers - Meteor">
+<meta property="og:url" content="http://www.akshatjoshi.co.in/blog/2017/06/03/Block-Helpers-Meteor/index.html">
 <meta property="og:site_name" content="Akshat&#39;s Notes">
-<meta property="og:description" content="Technical notes for reference">
+<meta property="og:description" content="Block helpers are templates that wrap the content of the block. They can be used to show content in different ways depending on conditions, or they can be used to add extra functionality to the blocks">
+<meta property="og:updated_time" content="2017-06-03T08:50:12.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Akshat&#39;s Notes">
-<meta name="twitter:description" content="Technical notes for reference">
+<meta name="twitter:title" content="Block Helpers - Meteor">
+<meta name="twitter:description" content="Block helpers are templates that wrap the content of the block. They can be used to show content in different ways depending on conditions, or they can be used to add extra functionality to the blocks">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://www.akshatjoshi.co.in/blog/"/>
+  <link rel="canonical" href="http://www.akshatjoshi.co.in/blog/2017/06/03/Block-Helpers-Meteor/"/>
 
 
 
 
 
-  <title>Akshat's Notes</title>
+  <title>Block Helpers - Meteor | Akshat's Notes</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -161,9 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,9 +256,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -284,9 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/06/03/Block-Helpers-Meteor/" itemprop="url">Block Helpers - Meteor</a></h1>
+          <h1 class="post-title" itemprop="name headline">Block Helpers - Meteor</h1>
         
 
         <div class="post-meta">
@@ -355,464 +353,86 @@
       
 
       
+        <p>Block helpers are templates that wrap the content of the block. They can be used to show content in different ways depending on conditions, or they can be used to add extra functionality to the blocks content, for example, some JavaScript calculation on its DOM elements.</p>
+<a id="more"></a>
+<p>Let’s see an example, create a template file :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"blockHelper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>My Block Helper<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">        &#123;&#123;#if this&#125;&#125;</div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>Content goes here: &#123;&#123;&gt; Template.contentBlock&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        &#123;&#123;else&#125;&#125;</div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>Else content here: &#123;&#123;&gt; Template.elseBlock&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        &#123;&#123;/if&#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>In your home template, invoke template block helper you created: </p>
+<pre><code class="html"><span class="comment">{{#blockHelper true}}</span>
+        <span class="tag">&lt;<span class="name">span</span>&gt;</span>Some Content<span class="tag">&lt;/<span class="name">span</span>&gt;</span>
+    <span class="comment">{{else}}</span>
+        <span class="tag">&lt;<span class="name">span</span>&gt;</span>Some Warning<span class="tag">&lt;/<span class="name">span</span>&gt;</span>
+<span class="comment">{{/blockHelper}}</span>
+</code></pre>
+
+      
+    </div>
+
+    <div>
+      
         
-          <p>Block helpers are templates that wrap the content of the block. They can be used to show content in different ways depending on conditions, or they can be used to add extra functionality to the blocks content, for example, some JavaScript calculation on its DOM elements.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/06/03/Block-Helpers-Meteor/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.akshatjoshi.co.in/blog/blog/2017/06/03/Setting-Data-Context-For-Template-Meteor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Akshat Joshi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Akshat's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/06/03/Setting-Data-Context-For-Template-Meteor/" itemprop="url">Setting Data Context For Template - Meteor</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-03T13:49:00+05:30">
-                2017-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/meteor/" itemprop="url" rel="index">
-                    <span itemprop="name">meteor</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/blog/tags/meteor/" rel="tag"># meteor</a>
           
-
+            <a href="/blog/tags/block-helpers/" rel="tag"># block helpers</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="Data-Context"><a href="#Data-Context" class="headerlink" title="Data Context"></a>Data Context</h2><p>In last posts we have seen how to display data using template helper function. In this post we will figure out how to set whole data context of a template</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/06/03/Setting-Data-Context-For-Template-Meteor/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/06/03/Setting-Data-Context-For-Template-Meteor/" rel="next" title="Setting Data Context For Template - Meteor">
+                <i class="fa fa-chevron-left"></i> Setting Data Context For Template - Meteor
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.akshatjoshi.co.in/blog/blog/2017/06/03/Display-Data-Using-Helpers-Meteor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Akshat Joshi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Akshat's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/06/03/Display-Data-Using-Helpers-Meteor/" itemprop="url">Display Data Using Helpers - Meteor</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-03T13:35:00+05:30">
-                2017-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/meteor/" itemprop="url" rel="index">
-                    <span itemprop="name">meteor</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="Template-Helpers"><a href="#Template-Helpers" class="headerlink" title="Template Helpers"></a>Template Helpers</h2><p>Each template can have functions, which are called template helpers, and they can be used inside the template and child templates. In addition to our custom helper functions, there are three callback functions that are called when the template is created, rendered, and destroyed. </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/06/03/Display-Data-Using-Helpers-Meteor/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.akshatjoshi.co.in/blog/blog/2017/06/03/Writing-Templates-in-Meteor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Akshat Joshi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Akshat's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/06/03/Writing-Templates-in-Meteor/" itemprop="url">Writing Templates in Meteor</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-03T12:35:00+05:30">
-                2017-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Meteor/" itemprop="url" rel="index">
-                    <span itemprop="name">Meteor</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Meteor’s template engine is called <strong>Spacebars</strong>, which is a derivative of the handlebars template engine. Spacebars is built on top of Blaze, which is Meteor’s reactive DOM update engine. What makes Spacebars so exciting is its simplicity and reactivity. Reactive templates mean that some parts of the template can automatically change when the underlying data changes. There is no need of manual DOM manipulation.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/06/03/Writing-Templates-in-Meteor/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -820,6 +440,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1042,10 +666,10 @@
   
 
   
-    <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
